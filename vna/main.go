@@ -16,8 +16,11 @@ import "fmt"
 
 func main() {
 
-	handle := C.PVNA_DeviceHandler(nil)
-	result := C.pocketvna_get_first_device_handle(&handle)
+	result := C.pocketvna_force_unlock_devices()
 	fmt.Println(result)
-
+	handle := C.PVNA_DeviceHandler(nil)
+	result = C.pocketvna_get_first_device_handle(&handle)
+	fmt.Println(result)
+	result = C.pocketvna_release_handle(&handle)
+	fmt.Println(result)
 }
